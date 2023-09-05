@@ -1,0 +1,21 @@
+services:
+  db-postgres:
+    container_name: db_client_info
+    image: postgres:15.1
+    environment:
+      POSTGRES_DB: client_info
+      POSTGRES_USER: client_info_service
+      POSTGRES_PASSWORD: service_password
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  database-data:
+    driver: local
+    driver_opts:
+      type: none
+      #for Linux     device: /data/pgData-clients-info-services
+      #for Win       device: D:/VolumePostgres/data/pgData-clients-info-services
+      device: D:/VolumePostgres/data/pgData-clients-info-services
+      o: bind
